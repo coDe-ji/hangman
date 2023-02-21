@@ -1,9 +1,9 @@
 ## Hangman 
 
-This is computer version of the classic Hangman game. It is built for one player.
+This is a computer version of the classic Hangman game. It is built for one player.
 
 ## How to Play:
-Click on ‘Start Game’.
+Click on ‘Start Game’. \n
 You have 10 chances to guess the right word.
 Number of blank spaces represent number of letters in the secret word.
 Start guessing the word by clicking on a letter.
