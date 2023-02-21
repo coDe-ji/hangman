@@ -1,0 +1,51 @@
+/* styling for the div holding all alphabet keys */
+.keyboard{
+   display: flex;
+  flex-wrap: wrap;
+  width: 600px;
+  height: 400px;
+  justify-content: center;
+  align-items: center;
+  gap: 5px;
+}
+
+/* styling for the alphabet buttons */
+.keys{
+  font-size: 40px;
+  padding: 10px;
+  background-color: #ffffff;
+  border: none;
+  width:100px;
+  border-radius: 5px;
+  box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.1);
+
+}
+
+/* styling for the flex container holding both the individual keys and the div holding all keys */ 
+.flex-container{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  
+}
+ /* styling for the div holding the letter to be guessed */
+.Guess{
+    margin:20px;
+    padding-left: 20px;
+}
+
+/* styling for the letters to be guessed */
+.letter{
+    padding-left:10px;
+    font-size: 70px;
+}
+
+.hangImage{
+    height: 300px;
+    width: 300px;
+}
+
+.head{
+   text-align: center;
+}
