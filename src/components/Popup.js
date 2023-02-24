@@ -17,13 +17,23 @@ function checkWin(correct, wrong, word) {
   return status
 }
 
+export const changeButtonsClass = () => {
+  const btnArr = document.getElementsByName("alphabetKey")
+  Array.from(btnArr).forEach((btn) => {
+    console.log(btn.className)
+    btn.className = "keys"
+  })
+}
+
 const Popup = ({ correctLetters, wrongLetters, selectedWord, playAgain }) => {
   let finalMessage = ""
   let wordReveal = ""
 
   if (checkWin(correctLetters, wrongLetters, selectedWord) === "win") {
+    changeButtonsClass()
     finalMessage = "Congratulations!! You guessed it Right !! "
   } else if (checkWin(correctLetters, wrongLetters, selectedWord) === "lose") {
+    changeButtonsClass()
     finalMessage = "Unfortunately you did not guess it right"
     wordReveal = `...the word was: ${selectedWord}`
   }

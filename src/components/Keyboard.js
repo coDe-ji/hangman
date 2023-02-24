@@ -1,7 +1,6 @@
 import "../style/index.css"
-import dictionary from "../words/dictionary.txt"
-import React, { useState, useEffect } from "react"
-import Popup from "./Popup"
+
+import React from "react"
 import state1 from "../hangmandrawings/state1.GIF"
 import state2 from "../hangmandrawings/state2.GIF"
 import state3 from "../hangmandrawings/state3.GIF"
@@ -16,21 +15,6 @@ import state11 from "../hangmandrawings/state11.GIF"
 
 let alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
 
-//Component to display the word to be guessed
-function Word({ selectedWord, correctLetters }) {
-  return (
-    <div>
-      {selectedWord.split("").map((letter, i) => {
-        return (
-          <span className="letter" key={i}>
-            {correctLetters.includes(letter) ? letter : "_"}
-          </span>
-        )
-      })}
-    </div>
-  )
-}
-
 function Keys({ buttonClass, handleClick }) {
   return (
     <div>
@@ -39,6 +23,7 @@ function Keys({ buttonClass, handleClick }) {
         alphabet.split("").map((letter, i) => {
           return (
             <button
+              name="alphabetKey"
               className={buttonClass}
               key={letter}
               value={letter}
@@ -61,32 +46,18 @@ function showMessage() {
   )
 }
 
-let wordsArray = []
 //Keyboard Component
-function Keyboard() {
-  const [correctLetters, setCorrectLetters] = useState([])
-  const [wrongLetters, setWrongLetters] = useState([])
-  const [guessesLeft, setGuessesLeft] = useState(11)
-  const [randomWord, setRandomWord] = useState("")
-  const [hangImage, setHangImage] = useState(state1)
-  const [buttonClass, setButtonClass] = useState("keys")
-
-  //generate a random word and set the variable, check if there is a word available to avoid generating multiple words.
-  useEffect(() => {
-    async function fetchRandomWord() {
-      const response = await fetch(process.env.PUBLIC_URL + dictionary)
-      const text = await response.text()
-      wordsArray = text.split("\n")
-      const randomIndex = Math.floor(Math.random() * wordsArray.length)
-      let word = wordsArray[randomIndex]
-      setRandomWord(word)
-    }
-
-    if (!randomWord) {
-      fetchRandomWord()
-    }
-  }, [randomWord])
-
+function Keyboard({
+  randomWord,
+  correctLetters,
+  setCorrectLetters,
+  wrongLetters,
+  setWrongLetters,
+  setHangImage,
+  guessesLeft,
+  setGuessesLeft,
+  buttonClass,
+}) {
   //Function to handle when an alphabet key is clicked on
   const handleClick = (event) => {
     const value1 = event.target.value
@@ -149,66 +120,13 @@ function Keyboard() {
     }
   }
 
-  //enable user restart the game
-  function playAgain() {
-    // Empty Arrays
-    setButtonClass("keys")
-    setCorrectLetters([])
-    setWrongLetters([])
-    setGuessesLeft(11)
-    setHangImage(state1)
-
-    const randomIndex = Math.floor(Math.random() * wordsArray.length)
-    let word = wordsArray[randomIndex]
-    setRandomWord(word)
-  }
-
-  //enable user restart the game
-  function restart() {
-    // Empty Arrays
-    setButtonClass("keys")
-    setCorrectLetters([])
-    setWrongLetters([])
-    setGuessesLeft(11)
-
-    setHangImage(state1)
-
-    const randomIndex = Math.floor(Math.random() * wordsArray.length)
-    let word = wordsArray[randomIndex]
-    setRandomWord(word)
-  }
-
   //render the components created above
   return (
     <div className="flex-container">
-      <div className="hangGuess">
-        <div>
-          <img
-            className="hangImage"
-            src={hangImage}
-            alt="hangman depiction"
-          ></img>
-        </div>
-        <div>
-          <h3>Guesses Left: {guessesLeft}</h3>
-        </div>
-        <button onClick={restart}>Restart</button>
-      </div>
-      <div className="Guess">
-        <Word selectedWord={randomWord} correctLetters={correctLetters} />
-      </div>
-
       <div className="keyboard">
         <Keys buttonClass={buttonClass} handleClick={handleClick} />
       </div>
-      <div>
-        <Popup
-          correctLetters={correctLetters}
-          wrongLetters={wrongLetters}
-          selectedWord={randomWord}
-          playAgain={playAgain}
-        />
-      </div>
+      <div></div>
     </div>
   )
 }

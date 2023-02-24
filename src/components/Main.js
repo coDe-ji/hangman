@@ -1,38 +1,37 @@
-import Keyboard from "./Keyboard"
-import { useState } from "react"
+//Component to display the word to be guessed
+function Word({ selectedWord, correctLetters }) {
+  return (
+    <div>
+      {selectedWord.split("").map((letter, i) => {
+        return (
+          <span className="letter" key={i}>
+            {correctLetters.includes(letter) ? letter : "_"}
+          </span>
+        )
+      })}
+    </div>
+  )
+}
 
-function Main() {
+function Main({ randomWord, guessesLeft, hangImage, correctLetters }) {
   //render the main components below
-  const [showDiv, setShowDiv] = useState(false)
-
-  function handleButtonClick() {
-    setShowDiv(!showDiv)
-  }
 
   return (
     <div>
-      <div className="help-container">
-        <button onClick={handleButtonClick}>Get Help</button>
-        {showDiv && (
-          <div className="help-section">
-            <h3>How to Play</h3>
-            <p>
-              Guess the hidden word by selecting a key on the virtual keyboard
-            </p>
-            <p>Selecting a wrong letter will highlight the word red</p>
-            <p>Selecting a correct letter will highlight the word green</p>
-            <p>The letter will be displayed above the keyboard</p>
-            <p>Each wrong guess reduces your game life by 1</p>
-            <p>
-              You will be prompted to try again with a different word when you
-              run out of game lives
-            </p>
-            <button onClick={handleButtonClick}>Exit</button>
-          </div>
-        )}
+      <div className="hangGuess">
+        <div>
+          <img
+            className="hangImage"
+            src={hangImage}
+            alt="hangman depiction"
+          ></img>
+        </div>
+        <div>
+          <h3>Guesses Left: {guessesLeft}</h3>
+        </div>
       </div>
-      <div>
-        <Keyboard />
+      <div className="Guess">
+        <Word selectedWord={randomWord} correctLetters={correctLetters} />
       </div>
     </div>
   )
