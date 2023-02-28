@@ -1,8 +1,12 @@
+/**
+ * This is the header component. Containing the Game title, Restart button and the help section.
+ */
+
 //import useful modules.
 import "../style/index.css"
 import { useState } from "react"
 
-// Header Component
+// Header Component takes in a playagain prop to be passed where the component is called. The play again prop is used to restart the game.
 function Header({ playAgain }) {
   const [showDiv, setShowDiv] = useState(false)
   // function to toggle the help information display
@@ -12,11 +16,14 @@ function Header({ playAgain }) {
   return (
     <div className="head">
       {/* Restart button */}
-      <div className="restart-button">
-        <button className="head-button" onClick={playAgain}>
-          Restart
-        </button>
+      <div className="restart-container ">
+        <div className="restart-button">
+          <button className="head-button" onClick={playAgain}>
+            Restart
+          </button>
+        </div>
       </div>
+      {/* Game header */}
       <div className="game-name">
         <h1>Hangman</h1>
         <p>Guess the hidden Word</p>
@@ -47,7 +54,6 @@ function Header({ playAgain }) {
           </div>
         )}
       </div>
-      {/* Div containing the Game name and welcome message. */}
     </div>
   )
 }

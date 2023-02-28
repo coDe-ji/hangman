@@ -1,9 +1,10 @@
-import React from "react"
+/**
+ * The Popup component is displayed when the game is over and the user has either won or lost
+ */
 
 function checkWin(correct, wrong, word) {
   let status = "win"
 
-  //check for win
   word.split("").forEach((letter) => {
     if (!correct.includes(letter)) {
       status = ""
@@ -17,27 +18,36 @@ function checkWin(correct, wrong, word) {
   return status
 }
 
+//function to change button class when the game is done to reset the default settings
 export const changeButtonsClass = () => {
   const btnArr = document.getElementsByName("alphabetKey")
   Array.from(btnArr).forEach((btn) => {
-    console.log(btn.className)
     btn.className = "keys"
+    btn.disabled = false
   })
 }
 
-const Popup = ({ correctLetters, wrongLetters, selectedWord, playAgain }) => {
+//Popup Component
+const Popup = ({
+  correctLetters,
+  wrongLetters,
+  selectedWord,
+  playAgain,
+  exitGame,
+}) => {
   let finalMessage = ""
   let wordReveal = ""
 
+  // call the function created above to check if the user has won or lost and display the appropriate message
   if (checkWin(correctLetters, wrongLetters, selectedWord) === "win") {
     changeButtonsClass()
-    finalMessage = "Congratulations!! You guessed it Right !! "
+    finalMessage = "Congratulations!! You guessed it Right"
   } else if (checkWin(correctLetters, wrongLetters, selectedWord) === "lose") {
     changeButtonsClass()
     finalMessage = "Unfortunately you did not guess it right"
     wordReveal = `...the word was: ${selectedWord}`
   }
-
+  //return the div displaying the popup box notifying the user if they won or lost
   return (
     <div
       className="container"
@@ -47,6 +57,7 @@ const Popup = ({ correctLetters, wrongLetters, selectedWord, playAgain }) => {
         <h2>{finalMessage}</h2>
         <h3>{wordReveal}</h3>
         <button onClick={playAgain}>Play Again</button>
+        <button onClick={exitGame}>Exit</button>
       </div>
     </div>
   )

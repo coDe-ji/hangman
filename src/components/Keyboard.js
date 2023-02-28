@@ -1,6 +1,5 @@
-import "../style/index.css"
-
-import React from "react"
+import "../style/index.css" //stylesheet
+//hangman state images
 import state1 from "../hangmandrawings/state1.GIF"
 import state2 from "../hangmandrawings/state2.GIF"
 import state3 from "../hangmandrawings/state3.GIF"
@@ -13,13 +12,14 @@ import state9 from "../hangmandrawings/state9.GIF"
 import state10 from "../hangmandrawings/state10.gif"
 import state11 from "../hangmandrawings/state11.GIF"
 
+//varibale holding each letter in the alphabet
 let alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
 
-function Keys({ buttonClass, handleClick }) {
+function Keys({ buttonClass, handleClick, disabled }) {
   return (
     <div>
       {
-        //Create the keyboard
+        //Create the keyboard by making a button for each letter in the variale and assigning them the follwoing props
         alphabet.split("").map((letter, i) => {
           return (
             <button
@@ -28,6 +28,7 @@ function Keys({ buttonClass, handleClick }) {
               key={letter}
               value={letter}
               onClick={handleClick}
+              disabled={disabled}
             >
               {letter}
             </button>
@@ -38,6 +39,7 @@ function Keys({ buttonClass, handleClick }) {
   )
 }
 
+//Notify the user if they try to click a button twice
 function showMessage() {
   return (
     <div className="notif">
@@ -57,12 +59,14 @@ function Keyboard({
   guessesLeft,
   setGuessesLeft,
   buttonClass,
+  disabled,
 }) {
   //Function to handle when an alphabet key is clicked on
   const handleClick = (event) => {
     const value1 = event.target.value
     const value = value1.toLowerCase()
 
+    // Check if the letter clciked is in the word, if it is check if it is in the correct letters array if not add it to it and change the classname so the user can kow if the letter is right or wrong.
     if (randomWord.includes(value)) {
       if (!correctLetters.includes(value)) {
         setCorrectLetters((currentLetters) => [...currentLetters, value])
@@ -70,6 +74,11 @@ function Keyboard({
       } else {
         showMessage()
       }
+
+      /**
+       * if the letter is not in the word, check if it is in the wrong letter array and add it to it then change the classname.
+       * Update the state of the guesses left and change the hangman image
+       */
     } else {
       if (!wrongLetters.includes(value)) {
         setWrongLetters((currentLetters) => [...currentLetters, value])
@@ -78,9 +87,6 @@ function Keyboard({
         setGuessesLeft(guessesLeft - 1)
 
         switch (guessesLeft) {
-          case 11:
-            setHangImage(state1)
-            break
           case 10:
             setHangImage(state2)
             break
@@ -120,11 +126,15 @@ function Keyboard({
     }
   }
 
-  //render the components created above
+  //render the component created above
   return (
     <div className="flex-container">
       <div className="keyboard">
-        <Keys buttonClass={buttonClass} handleClick={handleClick} />
+        <Keys
+          buttonClass={buttonClass}
+          handleClick={handleClick}
+          disabled={disabled}
+        />
       </div>
       <div></div>
     </div>

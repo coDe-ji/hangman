@@ -1,18 +1,19 @@
 /* styling for the div holding all alphabet keys */
 .keyboard{
-   display: flex;
+  display: flex;
   flex-wrap: wrap;
   width: 300px;
-  height: 200px;
+  height: 300px;
   justify-content: center;
   align-items: center;
-  gap: 5px;
+  text-align: center;
+  margin-top: -30px;
 }
 
 /* styling for the alphabet buttons */
 .keys{
-  font-size: 15px;
-  padding: 5px;
+  font-size: 20px;
+  padding: 10px;
   background-color: #ffffff;
   border: none;
   width:50px;
@@ -32,7 +33,8 @@
  /* styling for the div holding the letter to be guessed */
 .Guess{
     margin:20px;
-    padding-left: 20px;
+    display: flex;
+    justify-content: center;
 }
 
 /* styling for the letters to be guessed */
@@ -41,22 +43,43 @@
     font-size: 50px;
 }
 
+/* div container for the hangman image */
 .hangGuess{
   display: flex;
   flex-direction: row;
+  justify-content: center;
+  align-items : center;
+}
+/* div container for the guesses left */
+.guessLeft{
+  display: flex;
   justify-content: flex-end;
+  align-items: center;
+  margin-left: 40px;
 }
 
+/* div holding the current hangman image */
+.stateImage{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-left: 195px;
+}
+
+/* styling for the size of the hangman image */
 .hangImage{
     height: 300px;
     width: 300px;
 }
 
+/* styling for the divs in the header div */
 .head{
    text-align: center;
    display: flex;
    justify-content: space-between;
 }
+
+/* stylng for the buttons in the header */
 .head-button{
   align-items: center;
   appearance: none;
@@ -91,51 +114,22 @@
   z-index: 0;
 }
 
-.button-17:hover {
-  background: #F6F9FE;
-  color: #174ea6;
-}
-
-.button-17:active {
+/* styling for the header buttons when they are active */
+.head-button:active {
   box-shadow: 0 4px 4px 0 rgb(60 64 67 / 30%), 0 8px 12px 6px rgb(60 64 67 / 15%);
   outline: none;
 }
 
-.button-17:focus {
+/* styling for the header buttons when they are active */
+.head-button:focus {
   outline: none;
   border: 2px solid #4285f4;
 }
 
-.button-17:not(:disabled) {
-  box-shadow: rgba(60, 64, 67, .3) 0 1px 3px 0, rgba(60, 64, 67, .15) 0 4px 8px 3px;
-}
-
-.button-17:not(:disabled):hover {
-  box-shadow: rgba(60, 64, 67, .3) 0 2px 3px 0, rgba(60, 64, 67, .15) 0 6px 10px 4px;
-}
-
-.button-17:not(:disabled):focus {
-  box-shadow: rgba(60, 64, 67, .3) 0 1px 3px 0, rgba(60, 64, 67, .15) 0 4px 8px 3px;
-}
-
-.button-17:not(:disabled):active {
-  box-shadow: rgba(60, 64, 67, .3) 0 4px 4px 0, rgba(60, 64, 67, .15) 0 8px 12px 6px;
-}
-
-.button-17:disabled {
-  box-shadow: rgba(60, 64, 67, .3) 0 1px 3px 0, rgba(60, 64, 67, .15) 0 4px 8px 3px;
-}
-
+/* styling for the wrong letters */
 .wrongLetter{
-  /* font-size: 40px;
+  font-size: 20px;
   padding: 10px;
-  background-color: red;
-  border: none;
-  width:100px;
-  border-radius: 5px;
-  box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.1); */
-  font-size: 15px;
-  padding: 5px;
   background-color: red;
   border: none;
   width:50px;
@@ -143,16 +137,10 @@
   box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.1);
 }
 
+/* styling for the right letters */
 .rightLetter{
-  /* font-size: 40px;
+  font-size: 20px;
   padding: 10px;
-  background-color: green;
-  border: none;
-  width:100px;
-  border-radius: 5px;
-  box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.1); */
-  font-size: 15px;
-  padding: 5px;
   background-color: green;
   border: none;
   width:50px;
@@ -160,12 +148,14 @@
   box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.1);
 }
 
+/* styling for the game name text */
 .game-name{
   width: 7000px;
-  margin-left: 100px;
+  margin-left: 40px;
   text-align: center;
 }
 
+/* styling for the restart button in the header */
 .restart-button{
   display: flex;
   justify-content: flex-end;
@@ -174,6 +164,7 @@
   
 }
 
+/* styling for the help button in the header */
 .help-button{
   display: flex;
   justify-content: flex-end;
@@ -181,25 +172,7 @@
   padding-top: 20px;
 }
 
-.keys1{
-font-size: 25px;
-  padding: 10px;
-  background-color: blue;
-  border: none;
-  width:80px;
-  border-radius: 5px;
-  box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.1);
-}
-
-.keyboard1{
-  display: flex;
-  flex-wrap: wrap;
-  width: 500px;
-  height: 300px;
-  justify-content: center;
-  align-items: center;
-  gap: 5px;
-}
+/* styling for the popup container and elements within */
 
 .container{
   background-color: rgba(0, 0, 0, 0.3);
@@ -232,24 +205,30 @@ font-size: 25px;
   font-size: 16px;
 }
 
+/* styling for the help section and the hidden parts */
 .help-section{
 
   position: absolute;
   z-index:  1;
-  background-color: white;
-  width: 100%;
-  height: '200px';
-
+  
+   width: 300px;
+  /* margin-right: -25em;  */
+  margin-top: 10px;
         
 }
 
 .help-section p{
-  font-size: 0.7em;
+  font-size: 0.9em;
 }
 
 .help-container{
   width:100%;
   /* text-align: center; */
-  position: relative; 
+  position: relative;
+  margin-right: 120px;
+}
+
+.restart-container{
+  margin-left: 120px;
 }
 
